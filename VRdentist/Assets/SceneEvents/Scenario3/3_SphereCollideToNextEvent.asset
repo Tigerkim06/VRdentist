@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689de7fbefcd8234d9a8dd8b41462e36, type: 3}
+  m_Name: 3_SphereCollideToNextEvent
+  m_EditorClassIdentifier: 
+  delayNextEvent: 0
+  targetObjectName: Sphere
+  firstObjectName: Box
+  secondObjectName: Capsule
+  collideFirstNextScene: {fileID: 11400000, guid: adb9cfd8b900187419f4b9acf136b3c7,
+    type: 2}
+  collideSecondNextScene: {fileID: 11400000, guid: bb23499ba335db543ae771990eee9bc5,
+    type: 2}

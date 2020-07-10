@@ -15,17 +15,6 @@ public class SetActiveEvent : SceneEvent
         base.InitEvent();
         bool found = SceneAssetManager.GetAsset(assetName, out target);
         Debug.Log("Found Asset[" + assetName + "]: " + found);
-        if (found)
-        {
-            switch (type) {
-                case ActiveType.ToActive:
-                    target.gameObject.SetActive(false);
-                    break;
-                case ActiveType.ToDeactive:
-                    target.gameObject.SetActive(true);
-                    break;
-            }
-        }
        if(nextScene) nextScene.InitEvent();
     }
 

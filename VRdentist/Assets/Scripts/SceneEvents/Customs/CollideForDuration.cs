@@ -1,19 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "DestroyObjectsWhenCollideEvent", menuName = "SceneEvent/Custom/DestroyObjectsWhenCollideEvent")]
-public class DestroyObjectsWhenCollideEvent : SceneEvent
+[CreateAssetMenu(fileName = "CollideFoDuration", menuName = "SceneEvent/Custom/CollideFoDuration")]
+public class CollideForDuration : SceneEvent
 {
+
+
     public string firstObjectName;
     public string secondObjectName;
+
 
     private Collider firstObjectCollider;
     private Collider secondObjectCollider;
 
     public SceneEvent nextScene;
-    
+    float timer = 0;
+
+
     public override void InitEvent()
     {
         base.InitEvent();
@@ -28,7 +34,8 @@ public class DestroyObjectsWhenCollideEvent : SceneEvent
         }
         if (nextScene) nextScene.InitEvent();
     }
-    
+
+
     public override void StartEvent()
     {
         if (firstObjectCollider != null && secondObjectCollider != null)
@@ -41,38 +48,68 @@ public class DestroyObjectsWhenCollideEvent : SceneEvent
             passEventCondition = true;
         }
     }
-    
+
+
+
     public override void UpdateEvent()
     {
-        if (firstObjectCollider.bounds.Intersects(secondObjectCollider.bounds)) {
-            passEventCondition = true;  
+        if (firstObjectCollider.bounds.Intersects(secondObjectCollider.bounds))
+        {
+            passEventCondition = true;
+            timer += 1 * Time.deltaTime;
+            Debug.Log(timer);
         }
+
+
+
     }
-    
+
+
+
     public override void StopEvent()
     {
-        Debug.Log("Destroy Objects");
-      //  Destroy(firstObjectCollider.gameObject);
-        Destroy(secondObjectCollider.gameObject);
+        firstObjectCollider.enabled = false;
+        secondObjectCollider.enabled = false;
     }
+
 
     public override SceneEvent NextEvent()
     {
         return nextScene;
     }
 
+
+
+
+
+
     public override void Pause()
     {
-
+        throw new System.NotImplementedException();
     }
 
     public override void Skip()
     {
-
+        throw new System.NotImplementedException();
     }
+
+
 
     public override void UnPause()
     {
+        throw new System.NotImplementedException();
+    }
 
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dae21df0cc0d4064bb6ffae29ba9ff39, type: 3}
-  m_Name: 1_SetActiveTool1
+  m_Name: 2_SetActivebuttonGuide
   m_EditorClassIdentifier: 
-  delayNextEvent: 2
-  assetName: tool1
+  delayNextEvent: 0
+  assetName: New Text
   type: 0
-  nextScene: {fileID: 11400000, guid: 6f60bab66cffe4101ada8bc43920e915, type: 2}
+  nextScene: {fileID: 11400000, guid: 1a144a3b6af31439488d6acfce4b581f, type: 2}

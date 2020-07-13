@@ -15,4 +15,4 @@ MonoBehaviour:
   delayNextEvent: 0
   assetName: teeth1
   type: 0
-  nextScene: {fileID: 11400000, guid: 139e108ac14904efeb72bd3af4197a45, type: 2}
+  nextScene: {fileID: 11400000, guid: 066766e29c7e6422cb9115ce429ba07d, type: 2}

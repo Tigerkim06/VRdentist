@@ -52,7 +52,7 @@ public class DestroyObjectsWhenCollideEvent : SceneEvent
     public override void StopEvent()
     {
         Debug.Log("Destroy Objects");
-        Destroy(firstObjectCollider.gameObject);
+      //  Destroy(firstObjectCollider.gameObject);
         Destroy(secondObjectCollider.gameObject);
     }
 

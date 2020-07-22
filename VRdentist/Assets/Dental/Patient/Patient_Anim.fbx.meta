@@ -1,17 +1,53 @@
 fileFormatVersion: 2
-guid: c73f1720c38f52b48aabc71479e89dd8
+guid: d55c625125f764040bdace73067d711c
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Take 001
+      74: -7110361779240699949
+    second: Patient_Anim_Open_mouth
+  - first:
+      74: -6918471932999804896
+    second: Patient_Anim_Pull_mouth
+  - first:
+      74: -8629501455716028681
+    second: Patient_Anim_Open&Pull_mouth
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Arms_Legs
+    second: {fileID: 2100000, guid: 5f4a2f7c202ae1c458c6d912ed61cf1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: df7ff19307ce7de4280fd9539869253e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gum_Tongue
+    second: {fileID: 2100000, guid: e701acfbbb3164c47a0795092bf21bfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair_Eye_Eyebrown
+    second: {fileID: 2100000, guid: d9503079e5b16344aa68a281f5174b86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shirt_Pants
+    second: {fileID: 2100000, guid: aecbffc33208778468956e43ed5ae361, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Teeth_Jaw
+    second: {fileID: 2100000, guid: 0adafad930ec75b46a2aeb6c1d314b6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: f659ea5e8c85be042b69de146d2405c2, type: 2}
+    second: {fileID: 2100000, guid: 286f6b801ed4ce1498f9ae5747975c64, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -49,8 +85,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -69,7 +105,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 180
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4

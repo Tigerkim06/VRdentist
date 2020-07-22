@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -19,24 +18,39 @@ public class GrabPivotRotation : MonoBehaviour
         grabInteractable = this.GetComponent<XRGrabInteractable>();
         grabInteractable.onSelectEnter.AddListener(OnGrabbed);
         grabInteractable.onSelectExit.AddListener(OnReleased);
+        if (grabInteractable.attachTransform == null) {
+            GameObject createdPivot = new GameObject("Pivot");
+            createdPivot.transform.SetParent(grabInteractable.transform);
+            createdPivot.transform.localPosition = Vector3.zero;
+            createdPivot.transform.localEulerAngles = Vector3.zero;
+            grabInteractable.attachTransform = createdPivot.transform;
+        }
     }
 
     void OnGrabbed(XRBaseInteractor rBaseInteractor) {
         handPresence = rBaseInteractor.GetComponentInChildren<HandPresence>();
-        oldPivot = grabInteractable.attachTransform.localRotation;
+        if(grabInteractable.attachTransform)
+            oldPivot = grabInteractable.attachTransform.localRotation;
     }
 
     void OnReleased(XRBaseInteractor rBaseInteractor) {
         handPresence = null;
-        grabInteractable.attachTransform.localRotation = oldPivot;
+        if (grabInteractable.attachTransform)
+            grabInteractable.attachTransform.localRotation = oldPivot;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (handPresence && handPresence.GetPrimary2DAxis()!=Vector2.zero) {
+        if (handPresence && grabInteractable.attachTransform && handPresence.GetPrimary2DAxis()!=Vector2.zero) {
             Vector2 input = handPresence.GetPrimary2DAxis();
             grabInteractable.attachTransform.RotateAround(grabInteractable.attachTransform.position, input, rotateAngle);
         }
+    }
+
+    private void OnDestroy()
+    {
+        grabInteractable.onSelectEnter.RemoveListener(OnGrabbed);
+        grabInteractable.onSelectEnter.RemoveListener(OnReleased);
     }
 }

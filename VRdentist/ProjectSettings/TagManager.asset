@@ -18,10 +18,10 @@ TagManager:
   - Floor
   - Wall
   - Ceiling
-  - Body
-  - Grabbable
   - Props
-  - 
+  - Body
+  - Grabbable/Default
+  - Grabbable/Socket
   - 
   - 
   - 

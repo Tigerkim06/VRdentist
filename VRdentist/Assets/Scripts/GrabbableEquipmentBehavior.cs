@@ -15,10 +15,19 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private ActivateType activateType = ActivateType.Switch;
+
     [SerializeField]
-    private Collider[] activateColliders;
+    private bool alwaysActivateOnGrabbed = false;
+
     [SerializeField]
-    private bool triggerOnGrabbed = true;
+    private Collider[] physicsColliders;
+    [SerializeField]
+    private bool disabledPhysicsOnGrabbed = true;
+
+    [SerializeField]
+    private Collider[] triggerColliders;
+    [SerializeField]
+    private bool alwaysTriggerOnGrabbed = true;
 
     [SerializeField]
     [ReadOnly]
@@ -26,6 +35,7 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     private bool isActivate;
+    public bool IsActivate { get { return isActivate; } }
 
     private void Awake()
     {
@@ -44,14 +54,16 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
         grabInteractable.onActivate.AddListener(OnActivate);
         grabInteractable.onDeactivate.AddListener(OnDeactivate);
         SetAnimation();
+        SetPhysicsColliders();
         SetActivateColliders();
     }
 
     void OnGrabbed(XRBaseInteractor rBaseInteractor)
     {
         isGrabbed = true;
-        isActivate = false;
+        isActivate = alwaysActivateOnGrabbed;
         SetAnimation();
+        SetPhysicsColliders();
         SetActivateColliders();
     }
 
@@ -60,6 +72,7 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
         isGrabbed = false;
         isActivate = false;
         SetAnimation();
+        SetPhysicsColliders();
         SetActivateColliders();
     }
 
@@ -74,7 +87,9 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
                 isActivate = true;
                 break;
         }
+        isActivate = isActivate || alwaysActivateOnGrabbed;
         SetAnimation();
+        SetActivateColliders();
     }
 
     void OnDeactivate(XRBaseInteractor rBaseInteractor)
@@ -87,7 +102,9 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
                 isActivate = false;
                 break;
         }
+        isActivate = isActivate || alwaysActivateOnGrabbed;
         SetAnimation();
+        SetActivateColliders();
     }
 
     private void SetAnimation() {
@@ -97,12 +114,22 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
         }
     }
 
-    private void SetActivateColliders()
+    private void SetPhysicsColliders()
     {
-        foreach (Collider col in activateColliders) {
+        foreach (Collider col in physicsColliders) {
             if (col)
             {
-                col.isTrigger = isGrabbed && triggerOnGrabbed;
+                col.isTrigger = isGrabbed && disabledPhysicsOnGrabbed;
+            }
+        }
+    }
+
+    private void SetActivateColliders() {
+        foreach (Collider col in triggerColliders)
+        {
+            if (col)
+            {
+                col.enabled = isGrabbed && (isActivate || alwaysTriggerOnGrabbed);
             }
         }
     }

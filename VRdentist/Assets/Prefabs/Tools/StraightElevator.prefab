@@ -309,9 +309,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   activateType: 0
-  activateColliders:
+  physicsColliders:
   - {fileID: 3423774713914346012}
-  triggerOnGrabbed: 1
+  activateColliders: []
+  disabledPhysicsOnGrabbed: 1
   isGrabbed: 0
   isActivate: 0
 --- !u!114 &7730439980534935805

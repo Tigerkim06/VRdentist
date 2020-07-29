@@ -3,7 +3,7 @@
 public class SceneEventController : Singleton<SceneEventController>
 {
     public SceneEvent startEvent;
-
+    [SerializeField][ReadOnly]
     private SceneEvent currentEvent;
     public bool toStartEvent;
     private float delayProc;

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 6014463041151729739}
   - component: {fileID: 1148470028935677295}
   - component: {fileID: 4948559979646987419}
+  - component: {fileID: 7730439980534935805}
   m_Layer: 13
   m_Name: StraightElevator
   m_TagString: Untagged
@@ -307,11 +308,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  activateType: 0
   activateColliders:
   - {fileID: 3423774713914346012}
   triggerOnGrabbed: 1
-  enableActivate: 0
+  isGrabbed: 0
   isActivate: 0
+--- !u!114 &7730439980534935805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6550080776511362790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedf1176fb477cd44b2943bda7574c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: StraightElevator
+  hideOnStart: 0
 --- !u!1001 &2432187139460237574
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 public class SceneAssetManager : MonoBehaviour
 {
     private Dictionary<string, SceneAsset> assetDictionary;
+    public Dictionary<string, SceneAsset> AssetDictionary { get { return assetDictionary; } }
 
     private static SceneAssetManager instance;
     public static SceneAssetManager Instance { get { return instance; } }

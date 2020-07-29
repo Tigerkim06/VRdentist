@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 4741560546430317533}
   - component: {fileID: 2747043237151493700}
   - component: {fileID: 2431277679323122605}
+  - component: {fileID: -4968189777361256958}
   m_Layer: 13
   m_Name: SurgicalNeedle
   m_TagString: Untagged
@@ -112,6 +113,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.025, y: 0.01, z: 0.01}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4968189777361256958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699472988848291704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedf1176fb477cd44b2943bda7574c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: SurgicalNeedle
+  hideOnStart: 0
 --- !u!1001 &8823373174032472310
 PrefabInstance:
   m_ObjectHideFlags: 0

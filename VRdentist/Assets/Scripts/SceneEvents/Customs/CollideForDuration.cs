@@ -59,9 +59,6 @@ public class CollideForDuration : SceneEvent
             timer += 1 * Time.deltaTime;
             Debug.Log(timer);
         }
-
-
-
     }
 
 

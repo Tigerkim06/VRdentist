@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 7314290029068692915}
   - component: {fileID: 5252743869767669467}
   - component: {fileID: 7616815284440079314}
+  - component: {fileID: -1003603481338851106}
   m_Layer: 14
   m_Name: Fissure
   m_TagString: Untagged
@@ -257,6 +258,20 @@ MonoBehaviour:
   triggerOnGrabbed: 1
   isGrabbed: 0
   isActivate: 0
+--- !u!114 &-1003603481338851106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544113232095870608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedf1176fb477cd44b2943bda7574c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Fissure
+  hideOnStart: 0
 --- !u!1 &6530637514259257380
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneAssetManager : MonoBehaviour
@@ -31,6 +32,19 @@ public class SceneAssetManager : MonoBehaviour
         {
             bool found = SceneAssetManager.instance.assetDictionary.TryGetValue(name, out sceneAsset);
             return found;
+        }
+        return false;
+    }
+
+    public static bool GetGameObjectAsset(string name, out GameObject retGameObject)
+    {
+        retGameObject = default;
+        if (SceneAssetManager.instance != null && SceneAssetManager.instance.assetDictionary != null)
+        {
+            if ( SceneAssetManager.instance.assetDictionary.TryGetValue(name, out SceneAsset sceneAsset)) {
+                retGameObject = sceneAsset.gameObject;
+                return retGameObject != null;
+            }
         }
         return false;
     }

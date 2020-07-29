@@ -6,9 +6,10 @@ public class GrabRotation : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable;
     private HandPresence handPresence;
+    private XRBaseInteractor xrInteractor;
     private Transform attachTransform;
     private Quaternion mLocalRot_attachTransform;
-    public float rotSpeed = 60f;
+    public float rotSpeed = 100f;
 
     void Start()
     {
@@ -19,8 +20,10 @@ public class GrabRotation : MonoBehaviour
 
     void OnGrabbed(XRBaseInteractor rBaseInteractor)
     {
-        attachTransform = rBaseInteractor.attachTransform;
+        //attachTransform = rBaseInteractor.attachTransform;
+        attachTransform = grabInteractable.attachTransform;
         mLocalRot_attachTransform = attachTransform.localRotation;
+        xrInteractor = rBaseInteractor;
         handPresence = rBaseInteractor.GetComponentInChildren<HandPresence>();
     }
 
@@ -31,18 +34,22 @@ public class GrabRotation : MonoBehaviour
             attachTransform.localRotation = mLocalRot_attachTransform;
         }
         attachTransform = null;
+        xrInteractor = null;
         handPresence = null;
     }
 
     void Update()
     {
-        if (handPresence && attachTransform)
+        if (handPresence && attachTransform && xrInteractor)
         {
             Vector2 input = handPresence.GetPrimary2DAxis();
             if (input != Vector2.zero)
             {
-                Vector3 rot = new Vector3(input.y, input.x, 0);
-                attachTransform.RotateAround(attachTransform.position, rot, rotSpeed * Time.deltaTime);
+                // Vector3 rot = new Vector3(input.y, input.x,0);
+                attachTransform.RotateAround(xrInteractor.transform.position, xrInteractor.transform.right, input.y * rotSpeed * Time.deltaTime);
+                attachTransform.RotateAround(xrInteractor.transform.position, xrInteractor.transform.forward, -input.x * rotSpeed * Time.deltaTime);
+               // attachTransform.RotateAround(attachTransform.position, rot, rotSpeed * Time.deltaTime);
+                
             }
         }
     }

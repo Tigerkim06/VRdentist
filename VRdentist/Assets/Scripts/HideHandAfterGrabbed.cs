@@ -54,8 +54,10 @@ public class HideHandAfterGrabbed : MonoBehaviour
 
     private void OnDestroy()
     {
-        grabInteractable.onSelectEnter.RemoveListener(OnGrabbed);
-        grabInteractable.onSelectExit.RemoveListener(OnReleased);
+        if (grabInteractable) {
+            grabInteractable.onSelectEnter.RemoveListener(OnGrabbed);
+            grabInteractable.onSelectExit.RemoveListener(OnReleased);
+        }
     }
 
 }

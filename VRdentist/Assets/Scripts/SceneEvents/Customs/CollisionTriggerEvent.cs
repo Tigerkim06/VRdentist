@@ -6,40 +6,53 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CollisionTriggerEvent", menuName = "SceneEvent/TeethRemoval/CollisionTriggerEvent")]
 public class CollisionTriggerEvent : SceneEvent
 {
+    public string collisionTriggerName;
+    public string targetItemName;
+    public SceneEvent nextScene;
 
+    private CollisionTrigger trigger;
+    private GameObject targetItem;
 
-    public override SceneEvent NextEvent()
+    public override void InitEvent()
     {
-        throw new System.NotImplementedException();
-    }
+        base.InitEvent();
+        bool foundTargetObject = SceneAssetManager.GetAssetComponent<CollisionTrigger>(collisionTriggerName, out trigger);
+        bool foundFirstObject = SceneAssetManager.GetGameObjectAsset(targetItemName, out targetItem);
 
-    public override void Pause()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Skip()
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void StartEvent()
     {
-        throw new System.NotImplementedException();
-    }
 
-    public override void StopEvent()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UnPause()
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void UpdateEvent()
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    public override void StopEvent()
+    {
+
+    }
+
+    public override SceneEvent NextEvent()
+    {
+        return nextScene;
+    }
+
+    public override void Pause()
+    {
+
+    }
+
+    public override void UnPause()
+    {
+
+    }
+
+    public override void Skip()
+    {
+
     }
 }

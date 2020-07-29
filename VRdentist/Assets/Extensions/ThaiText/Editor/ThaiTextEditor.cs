@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(ThaiText))]
 public class ThaiTextEditor : Editor
 {
-    private SerializedObject targatSerializedObject;
-    SerializedObject baseSerializedObject;
+    //private SerializedObject targatSerializedObject;
     MonoScript script = null;
 
     void OnEnable()
     {
         // Setup the SerializedProperties
-        targatSerializedObject = new SerializedObject(target);
+        //targatSerializedObject = new SerializedObject(target);
         ThaiText thaiText = target as ThaiText;
         script = MonoScript.FromMonoBehaviour((ThaiText)target);
 
@@ -43,6 +39,8 @@ public class ThaiTextEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
         EditorGUI.BeginChangeCheck();
 
         ThaiText thaiText = target as ThaiText;
@@ -79,14 +77,11 @@ public class ThaiTextEditor : Editor
         thaiText.color = EditorGUILayout.ColorField("Color", thaiText.color);
         thaiText.material = EditorGUILayout.ObjectField("Material", thaiText.material, typeof(UnityEngine.Material), false) as Material;
         thaiText.raycastTarget = EditorGUILayout.Toggle("Raycast Target", thaiText.raycastTarget);
-
-        //string text = thaiText.text;
+         
         if (EditorGUI.EndChangeCheck())
         {
             serializedObject.ApplyModifiedProperties();
-        }
-
-        targatSerializedObject.Update();
+        } 
     }
 
     public static GUIStyle alignmentButtonLeft;

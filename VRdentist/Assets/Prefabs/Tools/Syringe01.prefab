@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4185327350713544468}
   - component: {fileID: 9130669118418483577}
   - component: {fileID: 1032878569315398377}
+  - component: {fileID: 3489870508696809845}
   m_Layer: 13
   m_Name: Syringe01
   m_TagString: Untagged
@@ -269,6 +270,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 180
+--- !u!114 &3489870508696809845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497772475798259056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedf1176fb477cd44b2943bda7574c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetName: Syringe01
+  hideOnStart: 0
 --- !u!1 &1742787104467340968
 GameObject:
   m_ObjectHideFlags: 0

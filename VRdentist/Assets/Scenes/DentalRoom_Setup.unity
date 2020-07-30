@@ -122,24 +122,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &123941938 stripped
+--- !u!1 &118933442
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7540301110764049928, guid: d86c1ca2c32c4764b9dcd6becf961bfa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1029103287920917635}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &123941939
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 118933445}
+  - component: {fileID: 118933444}
+  - component: {fileID: 118933443}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &118933443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123941938}
+  m_GameObject: {fileID: 118933442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a41f5ada643a0d46b6635bdb9c2bd1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &118933444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118933442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &118933445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118933442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217715237
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,7 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44959c2b7d0ae44b9d3067ce222183b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startEvent: {fileID: 0}
+  startEvent: {fileID: 11400000, guid: d63029c4fa1744c47b048ad782c60444, type: 2}
   currentEvent: {fileID: 0}
   toStartEvent: 0
   skip: 0
@@ -1135,24 +1183,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2027841011}
     m_Modifications:
-    - target: {fileID: 123941941, guid: d86c1ca2c32c4764b9dcd6becf961bfa, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 123941941, guid: d86c1ca2c32c4764b9dcd6becf961bfa, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 1538679181847770273, guid: d86c1ca2c32c4764b9dcd6becf961bfa,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1538679181847770273, guid: d86c1ca2c32c4764b9dcd6becf961bfa,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8002373023608067347, guid: d86c1ca2c32c4764b9dcd6becf961bfa,
         type: 3}
       propertyPath: m_Name

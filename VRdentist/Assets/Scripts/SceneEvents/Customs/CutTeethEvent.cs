@@ -1,28 +1,36 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "CutTeethEvent", menuName = "SceneEvent/TeethRemoval/CutTeethEvent")]
 public class CutTeethEvent : SceneEvent
 {
     public string wisdomTeethName;
+    public string wisdomTeethTriggerName;
     public string[] fragmentTeethNames;
     public string toolName;
+    public string progressTextName;
     public float actionTime;
     public SceneEvent nextScene;
 
+    private GameObject wisdomTeeth;
     private CollisionTrigger wisdomTeethTrigger;
     private List<GameObject> fragmentTooth;
     private GrabbableEquipmentBehavior tool;
+    private Text progressText;
 
     private bool isCollided;
     private float progressTime;
+    private float delayEndProgress;
 
     public override void InitEvent()
     {
         base.InitEvent();
-        bool foundTrigger = SceneAssetManager.GetAssetComponent<CollisionTrigger>(wisdomTeethName, out wisdomTeethTrigger);
+        bool foundTeeth = SceneAssetManager.GetGameObjectAsset(wisdomTeethName, out wisdomTeeth);
+        bool foundTrigger = SceneAssetManager.GetAssetComponent<CollisionTrigger>(wisdomTeethTriggerName, out wisdomTeethTrigger);
         bool foundItem = SceneAssetManager.GetAssetComponent<GrabbableEquipmentBehavior>(toolName, out tool);
+        bool foundText = SceneAssetManager.GetAssetComponent<Text>(progressTextName, out progressText);
 
         fragmentTooth = new List<GameObject>();
         foreach (string targetName in fragmentTeethNames) {
@@ -32,11 +40,13 @@ public class CutTeethEvent : SceneEvent
             }
         }
 
-        Debug.Log("Found Asset[" + wisdomTeethName + "]: " + foundTrigger);
+        Debug.Log("Found Asset[" + wisdomTeethName + "]: " + foundTeeth);
+        Debug.Log("Found Asset[" + wisdomTeethTriggerName + "]: " + foundTrigger);
         Debug.Log("Found Asset[fragment Teeth]: " + (fragmentTooth.Count>0));
         Debug.Log("Found Asset[" + toolName + "]: " + foundItem);
+        Debug.Log("Found Asset[" + progressTextName + "]: " + foundText);
 
-        if (wisdomTeethTrigger) wisdomTeethTrigger.gameObject.SetActive(true);
+        if (wisdomTeeth) wisdomTeeth.SetActive(true);
 
         if (nextScene) nextScene.InitEvent();
     }
@@ -45,11 +55,24 @@ public class CutTeethEvent : SceneEvent
     {
         isCollided = false;
         progressTime = 0;
+        delayEndProgress = 1f;
+        if (wisdomTeeth) {
+            wisdomTeeth.SetActive(true);
+        }
+        foreach (GameObject fragment in fragmentTooth)
+        {
+            fragment.SetActive(false);
+        }
         if (wisdomTeethTrigger)
         {
+            wisdomTeethTrigger.gameObject.SetActive(true);
             Debug.Log("CollisionTriggerEvent assign events");
             wisdomTeethTrigger.OnCollisionEnterEvent += OnCollisionEnter;
             wisdomTeethTrigger.OnCollisionExitEvent += OnCollisionExit;
+        }
+        if (progressText) {
+            progressText.text = GetProgressString();
+            progressText.gameObject.SetActive(true);
         }
     }
 
@@ -58,12 +81,15 @@ public class CutTeethEvent : SceneEvent
         if (tool && tool.IsActivate && isCollided)
         {
             progressTime += Time.deltaTime;
+            progressText.text = GetProgressString();
         }
-        foreach (GameObject fragment in fragmentTooth) {
-            fragment.SetActive(true);
-
+        if (actionTime < progressTime) {
+            if (wisdomTeeth && wisdomTeeth.activeInHierarchy) {
+                BreakTeeth();
+            }
+            delayEndProgress -= Time.deltaTime;
         }
-        passEventCondition = progressTime >= actionTime;
+        passEventCondition = (actionTime < progressTime && delayEndProgress < 0);
     }
 
     public override void StopEvent()
@@ -75,7 +101,11 @@ public class CutTeethEvent : SceneEvent
             wisdomTeethTrigger.OnCollisionExitEvent -= OnCollisionExit;
             wisdomTeethTrigger.gameObject.SetActive(false);
         }
-
+        if (progressText)
+        {
+            progressText.gameObject.SetActive(false);
+        }
+        BreakTeeth();
         Debug.Log("Stop event: " + this.name);
     }
 
@@ -114,6 +144,19 @@ public class CutTeethEvent : SceneEvent
         if (collision.gameObject == tool.gameObject)
         {
             isCollided = false;
+        }
+    }
+
+    private string GetProgressString() {
+        return Mathf.Clamp(Mathf.FloorToInt(progressTime/actionTime*100f), 0, 100) +" %";
+    }
+
+    private void BreakTeeth()
+    {
+        wisdomTeeth?.SetActive(false);
+        foreach (GameObject fragment in fragmentTooth)
+        {
+            fragment.SetActive(true);
         }
     }
 

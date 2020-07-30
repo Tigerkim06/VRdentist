@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: 2_CutTeethEvent
   m_EditorClassIdentifier: 
   delayNextEvent: 0
-  wisdomTeethName: WisdomTooth
+  wisdomTeethName: Tooth
+  wisdomTeethTriggerName: ToothTrigger
   fragmentTeethNames:
   - Tooth_Break1
   - Tooth_Break2
   toolName: Fissure
-  actionTime: 3
+  progressTextName: TeethProgressText
+  actionTime: 2
   nextScene: {fileID: 0}

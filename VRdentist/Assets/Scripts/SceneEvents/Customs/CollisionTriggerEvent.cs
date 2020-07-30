@@ -30,6 +30,7 @@ public class CollisionTriggerEvent : SceneEvent
         isCollided = false;
         if (trigger)
         {
+            trigger.gameObject.SetActive(true);
             Debug.Log("CollisionTriggerEvent assign events");
             trigger.OnCollisionEnterEvent += OnCollisionEnter;
             trigger.OnCollisionExitEvent += OnCollisionExit;
@@ -51,6 +52,7 @@ public class CollisionTriggerEvent : SceneEvent
             Debug.Log("CollisionTriggerEvent remove events");
             trigger.OnCollisionEnterEvent -= OnCollisionEnter;
             trigger.OnCollisionExitEvent -= OnCollisionExit;
+            trigger.gameObject.SetActive(false);
         }
         Debug.Log("Stop event: " + this.name);
     }

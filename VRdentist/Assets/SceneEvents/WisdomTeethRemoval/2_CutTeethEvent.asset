@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5730557c4dcd74aadda305ae9ca413, type: 3}
-  m_Name: 1_ScalpelTriggerEvent
+  m_Script: {fileID: 11500000, guid: 36d046851d34ead41afacdf0b5bf63ea, type: 3}
+  m_Name: 2_CutTeethEvent
   m_EditorClassIdentifier: 
   delayNextEvent: 0
-  collisionTriggerName: TriggerGumArea
-  targetItemName: Scalpel
-  nextScene: {fileID: 11400000, guid: d63029c4fa1744c47b048ad782c60444, type: 2}
+  wisdomTeethName: WisdomTooth
+  fragmentTeethNames:
+  - Tooth_Break1
+  - Tooth_Break2
+  toolName: Fissure
+  actionTime: 3
+  nextScene: {fileID: 0}

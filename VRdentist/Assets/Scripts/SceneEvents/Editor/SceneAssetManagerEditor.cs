@@ -6,28 +6,38 @@ using UnityEngine;
 [CustomEditor(typeof(SceneAssetManager))]
 public class SceneAssetManagerEditor : Editor
 {
-    SceneAssetManager assetManager;
-    List<SceneAsset> sceneAssetList;
+    SceneAssetManager AssetManager { get { return target as SceneAssetManager; } }
+    List<SceneAsset> sceneAssetList = new List<SceneAsset>();
     bool showAssetList = true;
-
-    private void OnEnable()
-    {
-        assetManager = target as SceneAssetManager;
-        if (assetManager && assetManager.AssetDictionary!=null && assetManager.AssetDictionary.Count > 0)
-        {
-            sceneAssetList = assetManager.AssetDictionary.Values.ToList();
-        }
-    }
-
+    
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+        
         EditorGUI.BeginChangeCheck();
 
         this.DrawDefaultInspector();
 
+        if (Application.isPlaying)
+        {
+            DrawSceneAssets();
+        }
+        else {
+            EditorGUILayout.LabelField("[ Scene assets will be available on runtime ]");
+        }
+        
+        if (EditorGUI.EndChangeCheck())
+        {
+            GetSceneAssetList();
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+
+    private void DrawSceneAssets() {
         showAssetList = EditorGUILayout.BeginFoldoutHeaderGroup(showAssetList, "Scene Assets");
-        if (showAssetList) {
-            if (sceneAssetList != null)
+        if (showAssetList)
+        {
+            if (sceneAssetList != null && sceneAssetList.Count > 0)
             {
                 EditorGUI.BeginDisabledGroup(true);
                 for (int i = 0; i < sceneAssetList.Count; i++)
@@ -42,25 +52,45 @@ public class SceneAssetManagerEditor : Editor
             }
             else
             {
-                EditorGUILayout.LabelField("No scene assets");
+                EditorGUILayout.LabelField("[ No scene assets in this scene ]");
             }
         }
         EditorGUILayout.EndFoldoutHeaderGroup();
+    }
 
-        if (EditorGUI.EndChangeCheck())
+    private void GetSceneAssetList() {
+        if (AssetManager && AssetManager.AssetDictionary != null && AssetManager.AssetDictionary.Count > 0)
         {
-            if (assetManager && assetManager.AssetDictionary != null && assetManager.AssetDictionary.Count > 0)
-            {
-                sceneAssetList = assetManager.AssetDictionary.Values.ToList();
-            }
-            else
-            {
-                sceneAssetList.Clear();
-            }
-            serializedObject.ApplyModifiedProperties();
+            sceneAssetList = AssetManager.AssetDictionary.Values.ToList();
         }
+        else
+        {
+            sceneAssetList.Clear();
+        }
+    }
 
-        serializedObject.Update();
+    // Update asset list before repaint
+    private void RedrawGUI() {
+        GetSceneAssetList();
+        this.Repaint();
+    }
 
+    private void OnEnable()
+    {
+        if (AssetManager)
+        {
+            AssetManager.WantRepaint += RedrawGUI;
+            GetSceneAssetList();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (AssetManager) AssetManager.WantRepaint += RedrawGUI;
+    }
+
+    private void OnDestroy()
+    {
+        if (AssetManager) AssetManager.WantRepaint += RedrawGUI;
     }
 }

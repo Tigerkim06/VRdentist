@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneAssetManager : MonoBehaviour
@@ -9,7 +8,16 @@ public class SceneAssetManager : MonoBehaviour
 
     private static SceneAssetManager instance;
     public static SceneAssetManager Instance { get { return instance; } }
-    public void Awake()
+
+#if UNITY_EDITOR
+    // Declare the method signature of the delegate to call.
+    // For a void method with no parameters you could just use System.Action.
+    public delegate void RepaintAction();
+    // Declare the event to which editor code will hook itself.
+    public event RepaintAction WantRepaint;
+#endif
+
+    private void Awake()
     {
         instance = this;
         assetDictionary = new Dictionary<string, SceneAsset>();
@@ -19,6 +27,9 @@ public class SceneAssetManager : MonoBehaviour
         if (!assetDictionary.ContainsKey(asset.assetName))
         {
             assetDictionary.Add(asset.assetName, asset);
+#if UNITY_EDITOR
+            WantRepaint?.Invoke();
+#endif
         }
         else {
             Debug.Log(asset.assetName+" has already existed.");

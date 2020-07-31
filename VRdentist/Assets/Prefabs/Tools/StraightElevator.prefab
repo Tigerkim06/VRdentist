@@ -30,6 +30,7 @@ Transform:
   - {fileID: 7258229883956142620}
   - {fileID: 7081300041552739008}
   - {fileID: 2141647237116045015}
+  - {fileID: 7302111402605366462}
   m_Father: {fileID: 6665268911407857516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,6 +79,50 @@ CapsuleCollider:
   m_Height: 0.12
   m_Direction: 1
   m_Center: {x: 0, y: 0.02, z: 0}
+--- !u!1 &5867466495677639287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7302111402605366462}
+  - component: {fileID: 4477051730101106069}
+  m_Layer: 0
+  m_Name: TriggerCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7302111402605366462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5867466495677639287}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.06226, z: 0}
+  m_LocalScale: {x: 0.11287499, y: 0.29104903, z: 0.1096875}
+  m_Children: []
+  m_Father: {fileID: 7157568159137843046}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4477051730101106069
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5867466495677639287}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.05, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6172492320478583488
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,10 +354,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   activateType: 0
+  alwaysActivateOnGrabbed: 0
   physicsColliders:
   - {fileID: 3423774713914346012}
-  activateColliders: []
   disabledPhysicsOnGrabbed: 1
+  triggerColliders: []
+  alwaysTriggerOnGrabbed: 1
   isGrabbed: 0
   isActivate: 0
 --- !u!114 &7730439980534935805

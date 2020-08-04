@@ -16,9 +16,11 @@ public class ThaiText : Text
     public UnityEvent OnChanged;
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private float boxwidth;
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private string defaultText = "";
     public string DefaultText
     {

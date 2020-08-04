@@ -27,6 +27,7 @@ public class SocketRespawner : MonoBehaviour
 
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private bool enableRespawn;
 
     void Start()
@@ -77,12 +78,11 @@ public class SocketRespawner : MonoBehaviour
         foreach (XRSocketInteractor socket in respawnAt)
         {
             if (socket && !socket.selectTarget) {
-                spawnPos = socket.attachTransform.position;
-                spawnAngles = this.transform.eulerAngles + socket.attachTransform.eulerAngles;
+                spawnPos = socket.attachTransform.position + grabInteractable.attachTransform.localPosition;
+                spawnAngles = socket.attachTransform.eulerAngles + grabInteractable.attachTransform.localEulerAngles;
                 break;
             }
         }
-
         this.transform.position = spawnPos;
         this.transform.eulerAngles = spawnAngles;
     }

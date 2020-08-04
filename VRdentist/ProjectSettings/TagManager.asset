@@ -23,8 +23,8 @@ TagManager:
   - Grabbable/Default
   - Grabbable/Socket
   - Trigger
-  - 
-  - 
+  - Grabbable/Ignore Raycast
+  - Grabbable/Body
   - 
   - 
   - 

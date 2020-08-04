@@ -10,9 +10,6 @@ public class HideHandAfterGrabbed : MonoBehaviour
     private bool recordShowController;
     private bool recordShowHand;
     
-    private XRInteractorLineVisual lineVisual;
-    private bool recordEnableLineVisual;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,17 +20,17 @@ public class HideHandAfterGrabbed : MonoBehaviour
 
     void OnGrabbed(XRBaseInteractor rBaseInteractor)
     {
-        handPresence = rBaseInteractor.GetComponentInChildren<HandPresence>();
-        lineVisual = rBaseInteractor.GetComponentInChildren<XRInteractorLineVisual>();
-        if (handPresence) {
+        HandPresence rHandPresence = rBaseInteractor.attachTransform.GetComponentInChildren<HandPresence>();
+        if (rHandPresence) {
+            if (handPresence && handPresence!=rHandPresence) {
+                handPresence.showController = recordShowController;
+                handPresence.showHand = recordShowHand;
+            }
+            handPresence = rHandPresence;
             recordShowController = handPresence.showController;
             recordShowHand = handPresence.showHand;
             handPresence.showController = false;
             handPresence.showHand = false;
-        }
-        if (lineVisual) {
-            recordEnableLineVisual = lineVisual.enabled;
-            lineVisual.enabled = false;
         }
     }
 
@@ -44,12 +41,7 @@ public class HideHandAfterGrabbed : MonoBehaviour
             handPresence.showController = recordShowController;
             handPresence.showHand = recordShowHand;
         }
-        if (lineVisual)
-        {
-            lineVisual.enabled = recordEnableLineVisual;
-        }
         handPresence = null;
-        lineVisual = null;
     }
 
     private void OnDestroy()

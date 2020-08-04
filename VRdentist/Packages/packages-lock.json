@@ -1,5 +1,31 @@
 {
   "dependencies": {
+    "com.dgn.scene-events": {
+      "version": "https://github.com/Onchulee/SceneEvents.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "551e82bb7552636a8c01c33d40fb9451eb162dce"
+    },
+    "com.unity.animation.rigging": {
+      "version": "0.2.7-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.1.1",
+        "com.unity.test-framework": "1.0.7"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.burst": {
+      "version": "1.1.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.mathematics": "1.1.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,
@@ -26,6 +52,13 @@
     "com.unity.ide.vscode": {
       "version": "1.2.1",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.mathematics": {
+      "version": "1.1.0",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -124,6 +157,13 @@
         "com.unity.ugui": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "unity-attributes": {
+      "version": "https://github.com/Onchulee/UnityAttributes.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6a1413e159edddd7c5992cefdf2a060166440949"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

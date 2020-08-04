@@ -24,7 +24,7 @@ public class GrabRotation : MonoBehaviour
         attachTransform = grabInteractable.attachTransform;
         mLocalRot_attachTransform = attachTransform.localRotation;
         xrInteractor = rBaseInteractor;
-        handPresence = rBaseInteractor.GetComponentInChildren<HandPresence>();
+        handPresence = rBaseInteractor.attachTransform.GetComponentInChildren<HandPresence>();
     }
 
     void OnReleased(XRBaseInteractor rBaseInteractor)

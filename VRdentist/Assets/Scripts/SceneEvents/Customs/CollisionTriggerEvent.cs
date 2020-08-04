@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using com.dgn.SceneEvent;
+using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "CollisionTriggerEvent", menuName = "SceneEvent/TeethRemoval/CollisionTriggerEvent")]

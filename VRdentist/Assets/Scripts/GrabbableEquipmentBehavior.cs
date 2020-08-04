@@ -31,9 +31,11 @@ public class GrabbableEquipmentBehavior : MonoBehaviour
 
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private bool isGrabbed;
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private bool isActivate;
     public bool IsActivate { get { return isActivate; } }
 

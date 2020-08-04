@@ -27,6 +27,7 @@ public class Respawner : MonoBehaviour
     
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private bool enableRespawn;
     
     void Start()

@@ -14,6 +14,7 @@ public class HandPresence : MonoBehaviour
 
     [SerializeField]
     [ReadOnly]
+    [ModifiableProperty]
     private HandState state;
     public HandState CurrentState { get { return state; } }
 
